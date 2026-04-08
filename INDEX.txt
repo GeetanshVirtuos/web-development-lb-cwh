@@ -3887,9 +3887,27 @@ Continue from video 6.
                   - mvn exec:java -P run-cli -Dexec.args="codegen https://opensource-demo.orangehrmlive.com/"
                         - This is for Codegen
                         - Run this from windows cmd (Not from intelliJ and not in Powershell)
-                        - Copy the script it generates in JUnit (yeah, TestNG is not available)
+                        - Copy the script it generates in JUnit (yeah, TestNG is not available, so transform the JUnit code in testNG code)
 
+      /****** Video 3 *******/
+            1) POM (page object model)
+                  Without POM: page.getByRole(AriaRole.TEXTBOX, new Page.GetByRoleOptions().setName("Username")).fill("Admin");
+                        - All things like:
+                              i) object locator code
+                              ii) testing code  
+                              iii) Action methods (here, fill("Admin"))   
+                        in same script.
+                        - Unreadable, hard to maintain ( say "Username" becomes "Username123" in future, now we have to manually change at 50 different places throughout) 
 
+                  With POM:
+                        1) We have 2 separate things:
+                              i) LoginPage.java : this will have "object locator code" + "Action methods"
+                              ii) LoginTest.java : this will have "testing code"
+                              
+                              LoginTest.java will import necessary stuff from LoginPage.java
+                        2) So, in POM, Every webpage = One class (e.g., LoginPage, HomePage) etc. 
+
+Continue from 27:05
  
 /********************** Playwright+Java Ends *****************************/
 

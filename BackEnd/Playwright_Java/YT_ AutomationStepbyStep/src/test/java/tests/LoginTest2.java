@@ -1,4 +1,4 @@
-// This file does not use POM
+// This file uses POM
 
 package tests;
 
@@ -6,10 +6,8 @@ import base.BaseTest;
 import com.microsoft.playwright.Page;
 import com.microsoft.playwright.options.AriaRole;
 import org.testng.annotations.Test;
-import com.microsoft.playwright.options.*;
-import static com.microsoft.playwright.assertions.PlaywrightAssertions.*;
 
-public class LoginTest extends BaseTest {
+public class LoginTest2 extends BaseTest {
 
     @Test
     void test() {
