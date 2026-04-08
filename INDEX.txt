@@ -3884,8 +3884,12 @@ Continue from video 6.
                   - [Using intelliJ]: run TestNG tests, IntelliJ supports them natively
                   - mvn clean test -DsuiteXmlFile="testng.xml" : To run the TestNG test via testng.xml file via maven
                         - OR just right click the testng.xml file in intelliJ and run it
+                  - mvn exec:java -P run-cli -Dexec.args="codegen https://opensource-demo.orangehrmlive.com/"
+                        - This is for Codegen
+                        - Run this from windows cmd (Not from intelliJ and not in Powershell)
+                        - Copy the script it generates in JUnit (yeah, TestNG is not available)
 
-Continue from 33:04
+
  
 /********************** Playwright+Java Ends *****************************/
 
