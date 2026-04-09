@@ -3907,7 +3907,7 @@ Continue from video 6.
                               LoginTest.java will import necessary stuff from LoginPage.java
                         2) So, in POM, Every webpage = One class (e.g., LoginPage, HomePage) etc. 
 
-Continue from 27:05
+Continue from Video 5
  
 /********************** Playwright+Java Ends *****************************/
 

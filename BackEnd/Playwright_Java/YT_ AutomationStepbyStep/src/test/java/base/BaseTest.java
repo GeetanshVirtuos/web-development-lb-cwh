@@ -10,6 +10,8 @@ import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import utils.ExtentManager;
+import utils.ScreenshotUtil;
+
 import java.lang.reflect.Method;
 
 public class BaseTest {
@@ -39,6 +41,16 @@ public class BaseTest {
         // Reporting
         if(result.getStatus() == ITestResult.FAILURE) {
             test.fail(result.getThrowable());
+            String screenshotPath = ScreenshotUtil.takeScreenshot(page, result.getName());
+
+            System.out.println("*** screenshotPath : "+screenshotPath);
+            String projectPath = System.getProperty("user.dir");
+
+            String absoluteScreenshotPath = projectPath+"/"+screenshotPath;
+            System.out.println(" *** absoluteScreenshotPath : "+absoluteScreenshotPath);
+
+            test.addScreenCaptureFromPath(absoluteScreenshotPath, "screenshot");
+
         } else if(result.getStatus() == ITestResult.SUCCESS) {
             test.pass("Test Passed");
         } else {
