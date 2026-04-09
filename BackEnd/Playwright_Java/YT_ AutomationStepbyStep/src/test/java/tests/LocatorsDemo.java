@@ -1,3 +1,5 @@
+// Note that this file does not follow the POM model, it's just for demo purposes.
+
 package tests;
 
 import base.BaseTest;
