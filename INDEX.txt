@@ -3907,7 +3907,8 @@ Continue from video 6.
                               LoginTest.java will import necessary stuff from LoginPage.java
                         2) So, in POM, Every webpage = One class (e.g., LoginPage, HomePage) etc. 
 
-      /****** Video 6/7 *******/
+      /****** Video 6 *******/
+      Note: Video 7 should not be a part of this playlist it is Playwright with TS
  
 /********************** Playwright+Java Ends *****************************/
 
