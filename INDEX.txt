@@ -3531,7 +3531,7 @@ Ref: https://youtu.be/R8_veQiYBjI?si=Gqp5uyBHRNBz6mVs
 
 /********************** DevOps Ends *****************************/
 
-/********************** System Design Starts *****************************/
+/********************** System Design (HLD) Starts *****************************/
       Ref: https://takeuforward.org/system-design/complete-system-design-roadmap-with-videos-for-sdes/
 
       /**** Module 1 : Basics ****/
@@ -3835,7 +3835,30 @@ Ref: https://youtu.be/R8_veQiYBjI?si=Gqp5uyBHRNBz6mVs
                   Continue from 6:37 in video (or from start if you forget everything).
  
 
-/********************** System Design Ends *****************************/
+/********************** System Design (HLD) Ends *****************************/
+
+/********************** System Design (LLD) Starts *****************************/
+      /********** 1. Introduction to LLD ***********/
+            /********** 1.1 Introduction to Low Level Design ***********/
+                  1) Why LLD: when code base grows, if you have not followed some design principles while writing it, it would be difficult for you to navigate, maintain and change it. So, LLD is needed for you when writing code to ensure your codebase is maintainable and scalable.
+                  2) LLD Formal Definition: It is when your code starts to take shape. It is the bridge b/w architecture and implementation. 
+                        Eg: Authentication is to be implemented. When you start thinking about which class, objects, interfaces I would make for this, that is LLD
+
+                        So, LLD is when you are getting into the details of the code and applying OOPs principles.
+                        
+            
+
+
+
+
+
+
+
+
+
+
+
+/********************** System Design (LLD) Ends *****************************/
 
 /********************** Playwright Begins *****************************/
 Ref: https://youtube.com/playlist?list=PLhW3qG5bs-L9sJKoT1LC5grGT77sfW0Z8&si=t9N1FuHrlORlwqGU
