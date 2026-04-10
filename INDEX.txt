@@ -3866,9 +3866,44 @@ Ref: https://youtu.be/R8_veQiYBjI?si=Gqp5uyBHRNBz6mVs
 
                         Note: SRP is not only for classes, it can be for functions, microservices etc.
 
+                  /********** 2.2 Open Closed Principle (OCP) ***********/
+                        1) Definition: Software entities (classes, modules & functions) should be open for extension but closed for modification.
+                              - Say class X is being used at 5 places, if u modify it, it would break at other places. So, no modification but ppl can extend it if they want a change.
 
+                  /********** 2.3 Liskov Substitution Principle (LSP) ***********/
+                        1) Definition: If S is a subtype of T, then objects of T may be replaced with objects of S without altering any of the desirable properties of that program.
+                              - Simpler version: If class B is a subclass of class A then you should be able to use B anywhere you used A, and the behaviour should remain correct.
 
+                        2) What happens when your code violates LSP?:
+                              i) Broken functionality when subclass replaces parent class
+                              Ex:
+                              class Notification{
+                                    public void sendNotification(){
+                                          System.out.println("Email Notification Sent");
+                                    }
+                              }
 
+                              class TextNotification extends Notification {
+                                    @Override
+                                    public void sendNotification() {
+                                          // This is violation of LSP, the new subclass has changed the behavior of old class. Behavior should not have changed.
+                                          throw new RuntimeException("Not supported");
+                                    }
+                              }
+
+                              public class Main {
+                                    public static void main(String[] args) {
+                                          
+                                          // Old way: Email Notification
+                                          // Notification notification = new Notification(); 
+                                          
+                                          // New way: we want text notification now.
+                                          Notification notification = new TextNotification(); // Trying to use LSP
+                                          notification.sendNotification();
+                                    }
+                              }
+
+Continue from 11:08 in the video.
 
 
 
