@@ -3845,11 +3845,26 @@ Ref: https://youtu.be/R8_veQiYBjI?si=Gqp5uyBHRNBz6mVs
                         Eg: Authentication is to be implemented. When you start thinking about which class, objects, interfaces I would make for this, that is LLD
 
                         So, LLD is when you are getting into the details of the code and applying OOPs principles.
-                        
             
+            /********** 1.2 Software Design Principles ***********/
+                  1) DRY (Do Not Repeat Yourself): each piece of knowledge/logic should have a single, unambiguous representation within the system.  
+                        1) When not to use DRY/ when can you skip DRY:
+                              i) Premature Abstraction: Premature abstraction is a software development error where developers generalize code, introduce interfaces, or create complex abstractions too early, often based on assumed future needs rather than actual, present requirements. This over-engineering increases system complexity, hinders readability, and makes future changes harder.
+                              ii) performance critical code: if something critical is working fine, maybe not touch it for now. :)
+                              iii) Legacy code can be left untouched if it's working fine and no one understands properly how it works
+                              iv) Don't Sacrifice readability with too much DRY by over abstracting everything.
 
+                  2) KISS (Keep It Simple, Stupid): A design should be kept as simple as possible. Complexity should be introduced when absolutely necessary.
+                  3) YAGNI (You Aren't Gonna Need It): Always implement things when you actually need them, never when you just forsee that you might need them.
 
+      /********** 2. Solid Principles ***********/
+                  1) This is a group of 5 principles
 
+                  /********** 2.1 Single Responsibility Principle (SRP) ***********/
+                        1) Definition: A class should have only one reason to change. So, a class should have only one job, one responsibility, one purpose.
+                              - If a class takes more than one responsibility then those responsibilities become coupled and changes to one might break the other.
+
+                        Note: SRP is not only for classes, it can be for functions, microservices etc.
 
 
 
