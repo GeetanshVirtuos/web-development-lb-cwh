@@ -3604,6 +3604,8 @@ Ref: https://youtu.be/X48VuDVv0do?si=yXiV_FswirgenFfu
             Note: 1) A StatefulSet does not automatically eliminate data inconsistencies. Proper configuration of the database (replication, clustering, etc.) is still required to ensure consistency.
             2) Working with StatefulSets is generally more complex than working with Deployments. Because of this, it is a common practice to use Kubernetes mainly for stateless applications, and host databases outside the cluster (managed separately).
 
+            Continue from 21:00 in video
+
 
 
 
