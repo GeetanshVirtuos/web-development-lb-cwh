@@ -3614,7 +3614,7 @@ Ref: https://youtu.be/X48VuDVv0do?si=yXiV_FswirgenFfu
 
 /********************** DevOps Ends *****************************/
 
-/********************** System Design Starts *****************************/
+/********************** System Design (HLD) Starts *****************************/
       Ref: https://takeuforward.org/system-design/complete-system-design-roadmap-with-videos-for-sdes/
 
       /**** Module 1 : Basics ****/
@@ -3918,7 +3918,179 @@ Ref: https://youtu.be/X48VuDVv0do?si=yXiV_FswirgenFfu
                   Continue from 6:37 in video (or from start if you forget everything).
  
 
-/********************** System Design Ends *****************************/
+/********************** System Design (HLD) Ends *****************************/
+
+/********************** System Design (LLD) Starts *****************************/
+      /********** 1. Introduction to LLD ***********/
+            /********** 1.1 Introduction to Low Level Design ***********/
+                  1) Why LLD: when code base grows, if you have not followed some design principles while writing it, it would be difficult for you to navigate, maintain and change it. So, LLD is needed for you when writing code to ensure your codebase is maintainable and scalable.
+                  2) LLD Formal Definition: It is when your code starts to take shape. It is the bridge b/w architecture and implementation. 
+                        Eg: Authentication is to be implemented. When you start thinking about which class, objects, interfaces I would make for this, that is LLD
+
+                        So, LLD is when you are getting into the details of the code and applying OOPs principles.
+            
+            /********** 1.2 Software Design Principles ***********/
+                  1) DRY (Do Not Repeat Yourself): each piece of knowledge/logic should have a single, unambiguous representation within the system.  
+                        1) When not to use DRY/ when can you skip DRY:
+                              i) Premature Abstraction: Premature abstraction is a software development error where developers generalize code, introduce interfaces, or create complex abstractions too early, often based on assumed future needs rather than actual, present requirements. This over-engineering increases system complexity, hinders readability, and makes future changes harder.
+                              ii) performance critical code: if something critical is working fine, maybe not touch it for now. :)
+                              iii) Legacy code can be left untouched if it's working fine and no one understands properly how it works
+                              iv) Don't Sacrifice readability with too much DRY by over abstracting everything.
+
+                  2) KISS (Keep It Simple, Stupid): A design should be kept as simple as possible. Complexity should be introduced when absolutely necessary.
+                  3) YAGNI (You Aren't Gonna Need It): Always implement things when you actually need them, never when you just forsee that you might need them.
+
+      /********** 2. Solid Principles ***********/
+                  1) This is a group of 5 principles
+
+                  /********** 2.1 Single Responsibility Principle (SRP) ***********/
+                        1) Definition: A class should have only one reason to change. So, a class should have only one job, one responsibility, one purpose.
+                              - If a class takes more than one responsibility then those responsibilities become coupled and changes to one might break the other.
+
+                        Note: SRP is not only for classes, it can be for functions, microservices etc.
+
+                  /********** 2.2 Open Closed Principle (OCP) ***********/
+                        1) Definition: Software entities (classes, modules & functions) should be open for extension but closed for modification.
+                              - Say class X is being used at 5 places, if u modify it, it would break at other places. So, no modification but ppl can extend it if they want a change.
+
+                  /********** 2.3 Liskov Substitution Principle (LSP) ***********/
+                        1) Definition: If S is a subtype of T, then objects of T may be replaced with objects of S without altering any of the desirable properties of that program.
+                              - Simpler version: If class B is a subclass of class A then you should be able to use B anywhere you used A, and the behaviour should remain correct.
+
+                        2) What happens when your code violates LSP?:
+                              i) Broken functionality when subclass replaces parent class
+                              Ex:
+                              class Notification{
+                                    public void sendNotification(){
+                                          System.out.println("Email Notification Sent");
+                                    }
+                              }
+
+                              class TextNotification extends Notification {
+                                    @Override
+                                    public void sendNotification() {
+                                          // This is violation of LSP, the new subclass has changed the behavior of old class. Behavior should not have changed.
+                                          throw new RuntimeException("Not supported");
+                                    }
+                              }
+
+                              public class Main {
+                                    public static void main(String[] args) {
+                                          
+                                          // Old way: Email Notification
+                                          // Notification notification = new Notification(); 
+                                          
+                                          // New way: we want text notification now.
+                                          Notification notification = new TextNotification(); // Trying to use LSP
+                                          notification.sendNotification();
+                                    }
+                              }
+
+                        3) In a nutshell: LSP says subclass should extend the behavious of the base class not change it.
+
+                        4) Key Principles of LSP:
+                              1) Design by contract (From chatGPT)
+                                    Each class has a contract — rules it must follow:
+                                          - Preconditions → what must be true before a method runs
+                                          - Postconditions → what the method guarantees after running
+                                          - Invariants → conditions that always remain true
+
+                                    When a subclass extends a parent class:
+                                          It must not make stricter preconditions (can’t demand more)
+                                          It must not weaken postconditions (can’t guarantee less)
+
+                                    Why for LSP?
+                                    If a subclass breaks this contract, it can’t safely replace the parent.
+
+                                    Example:
+                                          Parent: withdraw(amount) allows any amount ≤ balance
+                                          Child: only allows withdrawals on weekdays ❌
+                                          → This breaks expectations → violates LSP
+
+                              2) Use Composition (From chatGPT)
+                                    Instead of inheriting (IS-A relationship), build classes using other classes (HAS-A relationship).
+
+                                    Inheritance (bad in some LSP cases):
+                                          Child automatically inherits behavior
+                                          May be forced to override methods incorrectly → breaks LSP
+
+                                    Composition (better alternative):
+                                          You delegate behavior to another class
+                                          No need to pretend to be something you’re not
+
+                                    Example:
+                                          1) Inheritance ( Leads to problems ❌❌  )
+                                          class Bird {
+                                                void fly() {
+                                                      System.out.println("Flying...");
+                                                }
+                                          }
+
+                                          class Penguin extends Bird {
+                                                @Override
+                                                void fly() {
+                                                      throw new UnsupportedOperationException("Penguins can't fly");
+                                                }
+                                          }
+
+                                          ❌ Issue:
+                                                Penguin is-a Bird, but can’t behave like one
+                                                Breaks Liskov Substitution Principle (LSP)
+                                                If someone uses Bird b = new Penguin(); b.fly(); → 💥 crash
+
+                                          2) Composition (HAS-A instead of IS-A ✅✅ )  
+                                          Step 1: Create behavior interface
+                                                interface FlyBehavior {
+                                                      void fly();
+                                                }
+
+                                          Step 2: Different implementations
+                                                class CanFly implements FlyBehavior {
+                                                      public void fly() {
+                                                            System.out.println("Flying...");
+                                                      }
+                                                }
+
+                                                class CannotFly implements FlyBehavior {
+                                                      public void fly() {
+                                                            System.out.println("Cannot fly");
+                                                      }
+                                                }
+
+                                          Step 3: Use composition in Bird
+                                                class Bird {
+                                                      private FlyBehavior flyBehavior;
+
+                                                      Bird(FlyBehavior flyBehavior) {
+                                                            this.flyBehavior = flyBehavior;
+                                                      }
+
+                                                      void performFly() {
+                                                            flyBehavior.fly();
+                                                      }
+                                                }
+
+                                          Step 4: Create birds
+                                                public class Main {
+                                                      public static void main(String[] args) {
+                                                            Bird sparrow = new Bird(new CanFly());
+                                                            Bird penguin = new Bird(new CannotFly());
+
+                                                            sparrow.performFly();  // Flying...
+                                                            penguin.performFly();  // Cannot fly
+                                                      }
+                                                }
+
+                                          ✅ Why this works
+                                                No fake inheritance
+                                                No overriding to “break” behavior
+                                                Each object gets the right capability
+
+                  /********** 2.4 Interface Separation Principle (ISP) ***********/
+
+
+
+/********************** System Design (LLD) Ends *****************************/
 
 /********************** Playwright Begins *****************************/
 Ref: https://youtube.com/playlist?list=PLhW3qG5bs-L9sJKoT1LC5grGT77sfW0Z8&si=t9N1FuHrlORlwqGU
@@ -3967,8 +4139,31 @@ Continue from video 6.
                   - [Using intelliJ]: run TestNG tests, IntelliJ supports them natively
                   - mvn clean test -DsuiteXmlFile="testng.xml" : To run the TestNG test via testng.xml file via maven
                         - OR just right click the testng.xml file in intelliJ and run it
+                  - mvn exec:java -P run-cli -Dexec.args="codegen https://opensource-demo.orangehrmlive.com/"
+                        - This is for Codegen
+                        - Run this from windows cmd (Not from intelliJ and not in Powershell)
+                        - Copy the script it generates in JUnit (yeah, TestNG is not available, so transform the JUnit code in testNG code)
 
-Continue from 33:04
+      /****** Video 3/4/5 *******/
+            1) POM (page object model)
+                  Without POM: page.getByRole(AriaRole.TEXTBOX, new Page.GetByRoleOptions().setName("Username")).fill("Admin");
+                        - All things like:
+                              i) object locator code
+                              ii) testing code  
+                              iii) Action methods (here, fill("Admin"))   
+                        in same script.
+                        - Unreadable, hard to maintain ( say "Username" becomes "Username123" in future, now we have to manually change at 50 different places throughout) 
+
+                  With POM:
+                        1) We have 2 separate things:
+                              i) LoginPage.java : this will have "object locator code" + "Action methods"
+                              ii) LoginTest.java : this will have "testing code"
+                              
+                              LoginTest.java will import necessary stuff from LoginPage.java
+                        2) So, in POM, Every webpage = One class (e.g., LoginPage, HomePage) etc. 
+
+      /****** Video 6 *******/
+      Note: Video 7 should not be a part of this playlist it is Playwright with TS
  
 /********************** Playwright+Java Ends *****************************/
 
