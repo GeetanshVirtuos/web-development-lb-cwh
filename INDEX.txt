@@ -3903,8 +3903,107 @@ Ref: https://youtu.be/R8_veQiYBjI?si=Gqp5uyBHRNBz6mVs
                                     }
                               }
 
-Continue from 11:08 in the video.
+                        3) In a nutshell: LSP says subclass should extend the behavious of the base class not change it.
 
+                        4) Key Principles of LSP:
+                              1) Design by contract (From chatGPT)
+                                    Each class has a contract — rules it must follow:
+                                          - Preconditions → what must be true before a method runs
+                                          - Postconditions → what the method guarantees after running
+                                          - Invariants → conditions that always remain true
+
+                                    When a subclass extends a parent class:
+                                          It must not make stricter preconditions (can’t demand more)
+                                          It must not weaken postconditions (can’t guarantee less)
+
+                                    Why for LSP?
+                                    If a subclass breaks this contract, it can’t safely replace the parent.
+
+                                    Example:
+                                          Parent: withdraw(amount) allows any amount ≤ balance
+                                          Child: only allows withdrawals on weekdays ❌
+                                          → This breaks expectations → violates LSP
+
+                              2) Use Composition (From chatGPT)
+                                    Instead of inheriting (IS-A relationship), build classes using other classes (HAS-A relationship).
+
+                                    Inheritance (bad in some LSP cases):
+                                          Child automatically inherits behavior
+                                          May be forced to override methods incorrectly → breaks LSP
+
+                                    Composition (better alternative):
+                                          You delegate behavior to another class
+                                          No need to pretend to be something you’re not
+
+                                    Example:
+                                          1) Inheritance ( Leads to problems ❌❌  )
+                                          class Bird {
+                                                void fly() {
+                                                      System.out.println("Flying...");
+                                                }
+                                          }
+
+                                          class Penguin extends Bird {
+                                                @Override
+                                                void fly() {
+                                                      throw new UnsupportedOperationException("Penguins can't fly");
+                                                }
+                                          }
+
+                                          ❌ Issue:
+                                                Penguin is-a Bird, but can’t behave like one
+                                                Breaks Liskov Substitution Principle (LSP)
+                                                If someone uses Bird b = new Penguin(); b.fly(); → 💥 crash
+
+                                          2) Composition (HAS-A instead of IS-A ✅✅ )  
+                                          Step 1: Create behavior interface
+                                                interface FlyBehavior {
+                                                      void fly();
+                                                }
+
+                                          Step 2: Different implementations
+                                                class CanFly implements FlyBehavior {
+                                                      public void fly() {
+                                                            System.out.println("Flying...");
+                                                      }
+                                                }
+
+                                                class CannotFly implements FlyBehavior {
+                                                      public void fly() {
+                                                            System.out.println("Cannot fly");
+                                                      }
+                                                }
+
+                                          Step 3: Use composition in Bird
+                                                class Bird {
+                                                      private FlyBehavior flyBehavior;
+
+                                                      Bird(FlyBehavior flyBehavior) {
+                                                            this.flyBehavior = flyBehavior;
+                                                      }
+
+                                                      void performFly() {
+                                                            flyBehavior.fly();
+                                                      }
+                                                }
+
+                                          Step 4: Create birds
+                                                public class Main {
+                                                      public static void main(String[] args) {
+                                                            Bird sparrow = new Bird(new CanFly());
+                                                            Bird penguin = new Bird(new CannotFly());
+
+                                                            sparrow.performFly();  // Flying...
+                                                            penguin.performFly();  // Cannot fly
+                                                      }
+                                                }
+
+                                          ✅ Why this works
+                                                No fake inheritance
+                                                No overriding to “break” behavior
+                                                Each object gets the right capability
+
+                  /********** 2.4 Interface Separation Principle (ISP) ***********/
 
 
 
