@@ -3529,6 +3529,87 @@ Ref: https://youtu.be/R8_veQiYBjI?si=Gqp5uyBHRNBz6mVs
 
 /********** GitHub Actions Ends **************/
 
+/********** Kubernetes (K8s) Starts **************/
+Ref: https://youtu.be/X48VuDVv0do?si=yXiV_FswirgenFfu
+
+      1) What is K8s: an open source container orchestration tool. Helps you manage containerized applications (docker or smthing else's containers) in different deployment environements (physical, virtual, cloud etc.)
+      2) What problem does K8s solve:
+            i) Earlier, applications used to be monoliths
+            ii) But then, Microservice architecture came and apps would be split in 100s or 1000s of microservices. These microservices are separate and run in their own containers with independent updates, deployments etc. But managing 100s of containers individually is not easy, this is where K8s comes in!
+
+      /******* Main K8s components *********/
+            1) Node: This is a server
+            2) Pod: this is an abstraction over a container. This is the smallest unit in K8s.
+                  i) Why needed: when using K8s, you will only interact with K8s, no matter what container technology you are using (say, docker), so a Pod will run the container inside it.
+                  ii) Usually, a pod is supposed to run just 1 container i.e 1 app in it (or maybe more supporting containers but 1 main container) like say an ExpressJS app.
+                  iii) K8s provides a virtual network, so every pod gets an internal IP address (ofc its just within K8s). Different pods can communicate with each other using this IP (like an backend pod and a DB pod)
+                  iv) Pods in K8s are ephemeral i.e can die if the app inside crashes or say the node running the pod ran out of resources. When that happens, a new pod is created in its place and gets a new IP address.
+
+                  🔴Issue: if you are using IP addresses to communicate b/w pods, this would be an issue everytime a pod dies. For this see 3)
+            3) Service: It is a permanent IP address. It can be attached to a pod. Lifecycle of Pod and Service are NOT connected, so even if pod dies, Service (and it's IP address) stays.
+                  1) Types of Service:
+                        i) external: a service that is open to requests from outside (say the frontend of ur app).
+                              -It would accessible outside on a url like: http://<node ip>:<external service port>
+                        ii) internal
+
+            4) Ingress: You would not want a weird url for your external service (see 3) above), you would want it on a doamin name with https. For this we use Ingress.
+                  - So, now, the request would go to ingres instead of the service and ingres would forward it to the relevant service.
+            5) ConfigMap: Consider you have two services: one is an Express backend, and the other is a MongoDB database.
+
+            Usually, you would have the database service URL hardcoded into your Express application. Now, if the name of the database service changes, you would need to:
+                  - Update the code in the Express backend
+                  - Push the changes to the repository
+                  - Pull and redeploy it into the pod
+            This becomes very tedious.
+
+            This is where ConfigMaps come in: In a ConfigMap, you can define variables like the DB_URL. Whenever the service name changes, you only need to update the ConfigMap, without modifying or redeploying your application code.
+
+            6) Secret: Sensitive data like database passwords is also part of external configuration, but it should never be stored in a ConfigMap, because ConfigMaps store data in plain text.
+
+            Instead, such data should be stored in a Secret. Secrets store data in Base64-encoded format, providing a basic level of obfuscation.
+
+            Just like ConfigMaps, pods can read data from Secrets and use it as needed (e.g., as environment variables etc).
+
+            🔺Note🔺: Base64 encoding is not true encryption—it’s just encoding. For stronger security, additional measures (like encryption at rest and RBAC) are usually required.
+
+            7) Volumes: Consider a pod running a database. If the pod restarts, all the data stored inside the container would be lost. We do not want that. To solve this, we use volumes.A volume can be attached to a pod, and it can refer to either:
+                  - A local hard drive, or
+                  - External storage outside the Kubernetes cluster (remote storage)
+            This enables data persistence, meaning the data survives even if the pod restarts.
+
+            Note: Storage is a separate layer from the Kubernetes cluster. Kubernetes itself does not fully manage data persistence—you need to handle it by configuring:
+                  Volumes
+                  Data replication
+                  External storage systems etc.
+
+            8) Deployment: Consider a pod my-app (say it is running an Express backend). If this pod dies, there will be downtime while a new one is being created. We want to avoid that.
+            Assume this pod is exposed through a Service (S1). A Service provides a stable IP address and also acts as a load balancer.
+
+            To prevent downtime, we run replica pods of my-app (often on different nodes). These replicas are also connected to the same Service (S1). The Service will route traffic to available/less busy pods, ensuring high availability.
+
+            You don’t manually create these replica pods. Instead, you define a blueprint, for example:
+            “I want 3 replicas of the my-app pod.”
+
+            This blueprint is called a Deployment. It is a higher-level abstraction over pods, so in practice, you work with Deployments, not individual pods.
+
+            💛 Note: 
+                  1) A stateful pod cannot be replicated using a Deployment (i.e., one holding data). Simple replication in such cases is insufficient because it can lead to data inconsistencies. For example, different replicas might receive different write operations, which can cause conflicts or data mismatches.
+
+                  So, Stateful applications require a specialized mechanism for replication.
+
+                  2) 2) Deployment would also be used to scale up or scale down your application by defining how many replicas you want.
+
+            9) StatefulSet: It provides a mechanism for managing stateful applications, especially databases like MongoDB, MySQL, and Elasticsearch. You should create such applications using a StatefulSet.
+
+            Note: 1) A StatefulSet does not automatically eliminate data inconsistencies. Proper configuration of the database (replication, clustering, etc.) is still required to ensure consistency.
+            2) Working with StatefulSets is generally more complex than working with Deployments. Because of this, it is a common practice to use Kubernetes mainly for stateless applications, and host databases outside the cluster (managed separately).
+
+
+
+
+
+/********** Kubernetes Ends **************/
+
 /********************** DevOps Ends *****************************/
 
 /********************** System Design Starts *****************************/
