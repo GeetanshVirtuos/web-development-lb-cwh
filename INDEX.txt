@@ -4094,7 +4094,27 @@ Ref: https://youtu.be/X48VuDVv0do?si=yXiV_FswirgenFfu
                               i) When ur interface is doiing too many things.
                               ii) When a class implementing an interface throws an error in one of the functions of the interface (like class says we don't want this function so throw error not supported): Now you know that interface has a function that the class does not want, so we can use ISP to simplify the interface.
 
-Continue from Vid 2.5
+                  /********** 2.5 Dependency Inversion Principle (DIP) ***********/
+                        1) Definition: High loved modules should not depend on Low level modules. Both should depend on abstraction (i.e an interface for Java). Abstraction should not depend on details. Details should depend on abstractions. 
+                              - In simple terms: Instead of one class directly using another concrete class, both should rely on an interface (abstraction). This makes your code more flexible, testable, and easier to change.
+                              - Ex: "SystemDesign(LLD)\2_5_DIP.java"
+
+      /********** 3. UML ***********/
+            /********** 3.1 Unified Modeling Language (UML) ***********/
+                  1) What is UML: Unified modding language is a standardized visual language used to model and document the designs of software systems. It offers a set of diagrams to represent different aspects of a system for clear communication among stakeholders and helping us to understand the design.
+
+                  2) Total 14 UML diagrams are there, subdivided into 2 types:
+                        A) Structural diagrams (Revolving around explaining code)
+                              i) Class Diagrams (Imp. for LLD): shows classes, interfaces, relationships b/w them etc.
+                              ii) Skipping rest, not imp.
+                        
+                        B) Behavioural Digest
+            
+            /********** 3.2 class UML diagrams ***********/
+
+Continue from 14:00 in video
+
+
 
 
 /********************** System Design (LLD) Ends *****************************/
