@@ -4086,8 +4086,15 @@ Ref: https://youtu.be/X48VuDVv0do?si=yXiV_FswirgenFfu
                                                 No overriding to “break” behavior
                                                 Each object gets the right capability
 
-                  /********** 2.4 Interface Separation Principle (ISP) ***********/
+                  /********** 2.4 Interface Segregation Principle (ISP) ***********/
+                        1) Definition: Clients should not be forced to depend on interfaces they don't use.
+                              - i.e Don't create large, bloated interfaces.
+                              - Break them into smaller and more specific interfaces.
+                        2) When to know that you need to implement ISP:
+                              i) When ur interface is doiing too many things.
+                              ii) When a class implementing an interface throws an error in one of the functions of the interface (like class says we don't want this function so throw error not supported): Now you know that interface has a function that the class does not want, so we can use ISP to simplify the interface.
 
+Continue from Vid 2.5
 
 
 /********************** System Design (LLD) Ends *****************************/
