@@ -4111,11 +4111,60 @@ Ref: https://youtu.be/X48VuDVv0do?si=yXiV_FswirgenFfu
                         B) Behavioural Digest
             
             /********** 3.2 class UML diagrams ***********/
+                  1) Types of Relationships b/w classes:
+                        i) Association: This represents a "usus - a" relationship between two classes where one class uses or interacts with the other.
+                        ii) Agregation: This represents a "has - a" relationship where one class contains another class, but the contained class can exist independently.
+                        iii) Composition: This represents a strong "has-a" relationship where the part cannot exist without th e whole. If the whole is destroyed, the parts are also destroyed.
+                        iv) Inheritance: This represents an "is-a" relatinship where one class inherits the attributes and methods of another class.
+                        v) Realization (Implementation): This represents a relationship between a class and an interface where the chass implements the methods declared in the interface.
+                        vi) Dependency: This represents a "uses" relationship where a change in one class may affect the other class.
 
-Continue from 14:00 in video
+      /********** 4. Creational Design Patterns ***********/
+            /********** 4.1 Introduction to Design Patterns Creational Design Patterns ***********/
+                  1) what are design pattens?: They are proven solutions to recurring design problems in development. not code, rather best practices shaped into reusable abstractions.
+                  2) Types of Design Patterns (Total 23):
+                        i) Creational (5)
+                        ii) Structural (7)
+                        iii) Behavior  al (11)
+                  Note: There are 100s of patterns but these 23 are the most popular and solve the most recurring problems.
+
+                        1) Creational Design Patterns: they deal with object creation mechanisms.
+                              - So, whenever you want to know which type of object to create, this will be used.
+                              - Types:
+                                    1. Singleton
+                                    2. Factory
+                                    3. Abstract
+                                    4. Builder
+                                    S. Prototype
+
+                        2) Structural Patterns: focuses on how classes and objects are composed to form larger structure. It helps system to work together that otherwise could not because of incompatible interfaces.
+                              - Types:
+                                    1. Adapter
+                                    2. Bridge
+                                    3. Composite
+                                    4. Decorator
+                                    S. Facade
+                                    6. Flyweight
+                                    7. Proxy
+
+                        3) Behavioral Patterns: concerned with communication b/w objects.
+                              - So, would be used when you are dealing with objects (of a class)
+                              - Types:
+                                    1. Chain of responsibility
+                                    2. Command
+                                    3. Interpreter
+                                    4. Iterator
+                                    5. Mediator
+                                    6. Memento
+                                    7. Obserer
+                                    8. State
+                                    9. Strategy
+                                    10. Template
+                                    11. Visitor
 
 
 
+Continue from video 4.2
 
 /********************** System Design (LLD) Ends *****************************/
 
