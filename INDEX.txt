@@ -4162,9 +4162,44 @@ Ref: https://youtu.be/X48VuDVv0do?si=yXiV_FswirgenFfu
                                     10. Template
                                     11. Visitor
 
+            /********** 4.2 Singleton Design Pattern ***********/
+                  1) Definition: The singleton pattern ensures that the class has only one instance throughout the application's lifeycle and provides a global access point to that instance.    
+                  2) When is it needed: When ur object: 
+                        - Should exist only once due to global state (u want a single object throughout ur application lifecycle), resource constraints ( u cannot afford creation of multiple objects ) or some other logical reasoning. 
+                        - Needs to be accessed from different parts of the system.
+                  3) Prime ex:
+                        i) DB (only one connection object otherwise connections would be exhausted)
+                        ii) logging ( same object for storing logs being used everywhere )
+                        etc.
+                  4) 2 ways to implement:
+                        1) Eager Loading ( See "SystemDesign(LLD)\4_2_SingletonDesignPattern\x1_EagerLoading.java" ) : the object/instance is created at the time of class initialization. 
+                              i) thread safe
+                              ii) (Disadvantage) Creates instances of all classes even if you would not be using them
+                              📒Note: "class initialization" is a dedicated phase in Java guaranteed by the JVM to be thread safe. (This phase is not present in C++).
+
+                        2) Lazy Loading ( See "SystemDesign(LLD)\4_2_SingletonDesignPattern\x2_LazyLoading.java" ): Object/instance NOT created at class initialization but rather at execution time
+                              i) not thread safe
+                                    - Can be made thread safe in 3 ways:
+                                          i) using "synchronized" keyword
+                                                - "synchronized" means: only one thread can enter this method at a time
+                                                - But, this is inefficienct ( See code )
+                                          ii) Double-checked locking mechanism
+                                                ✅ Lazy initialization (create object only when needed)
+                                                ✅ Thread safety
+                                                ✅ No unnecessary locking after creation
+                                          iii)  Bill Pugh Singleton implementation
+                                              1) This is the best Singleton Pattern implementation in Java as it's same as ii) Double-checked locking mechanism but with simpler code!
+
+                              ii) Creates instances of classes only if you would be using them
+                  5) Singleton Pattern violates SRP (Single Responsibility Principle) as the same class has 2 tasks:
+                        i) maintain single global instance
+                        ii) whatever the core logic that class was designed for 
 
 
-Continue from video 4.2
+
+
+
+Continue from video 4.3
 
 /********************** System Design (LLD) Ends *****************************/
 
