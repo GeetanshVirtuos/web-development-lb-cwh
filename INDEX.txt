@@ -4209,6 +4209,18 @@ Ref: https://youtu.be/X48VuDVv0do?si=yXiV_FswirgenFfu
                         i) Notification Service
                         ii) Payment gateway
 
+            /********** 4.4 Builder Pattern ***********/
+                  1) Definition: It is a creational pattern used to construct complex ohjeets step by step. It separates the construction of an object from it's representation, allowing the same construction process to create different representations.
+                        Ex: Say you have a class "Meal" and many things are optional like "coke", "curd", "rice" etc, it's not cool for the client code to pass null in the class constructor for all the optional things he does not want. This is what "Builder Pattern" solves.
+                  
+
+ Continue from 6:00 in video
+
+
+
+
+
+
 
 Continue from video 4.4
 
