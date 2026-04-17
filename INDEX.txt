@@ -4195,11 +4195,22 @@ Ref: https://youtu.be/X48VuDVv0do?si=yXiV_FswirgenFfu
                         i) maintain single global instance
                         ii) whatever the core logic that class was designed for 
 
+            /********** 4.3 Factory Method ***********/
+                  See "SystemDesign(LLD)\4_2_SingletonDesignPattern\x3_FactoryPattern.java" for code
+
+                  1) Definition: It's a creational design pattern that lets you create objets without telling your code exactly which class to use.
+                  2) When to use it:
+                        - When the client should not knows what exact class of the object it needs.
+                        - to decouple objet creation logic from client code.
+                        - when obicet creation is complex and depends on conditions
+
+                  📒Note: Analogy: If you ask a factory to give you iPhones, you should not know what goes on inside, you will get what you asked for that's all. Same for if you asked them for Oranges instead.
+                  3) Real Life examples:
+                        i) Notification Service
+                        ii) Payment gateway
 
 
-
-
-Continue from video 4.3
+Continue from video 4.4
 
 /********************** System Design (LLD) Ends *****************************/
 
