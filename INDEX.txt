@@ -4210,19 +4210,22 @@ Ref: https://youtu.be/X48VuDVv0do?si=yXiV_FswirgenFfu
                         ii) Payment gateway
 
             /********** 4.4 Builder Pattern ***********/
+                  See "SystemDesign(LLD)\4_2_SingletonDesignPattern\x4_BuilderPattern.java"
+
                   1) Definition: It is a creational pattern used to construct complex ohjeets step by step. It separates the construction of an object from it's representation, allowing the same construction process to create different representations.
                         Ex: Say you have a class "Meal" and many things are optional like "coke", "curd", "rice" etc, it's not cool for the client code to pass null in the class constructor for all the optional things he does not want. This is what "Builder Pattern" solves.
                   
+                  Note: 
+                        1) Builder pattern is not required much in other languages because you have the option of setting "default parameters" in other languages like python, C++ or JS. But stupid Java does NOT have that 😂😂; so you use builder pattern.
+                        2) Constructor Telescoping: Even in Java, you can avoid builder pattern by writing different overloaded constructors for the different combos - but this only works till there are less number of parameters.
+                              - Consequently, if your class has say 2 or 3 parameters, builder pattern is over engineering 🌉🌉
+                  2) Real World ex of builder patter: building a shopping cart object of say Amazon.
 
- Continue from 6:00 in video
+                  
 
 
+Continue from 4.5 video
 
-
-
-
-
-Continue from video 4.4
 
 /********************** System Design (LLD) Ends *****************************/
 
