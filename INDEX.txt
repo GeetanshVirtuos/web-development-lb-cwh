@@ -4222,9 +4222,14 @@ Ref: https://youtu.be/X48VuDVv0do?si=yXiV_FswirgenFfu
                   2) Real World ex of builder patter: building a shopping cart object of say Amazon.
 
                   
+            /********** 4.5 Abstract Factory Pattern ***********/
+                  1) Definition: A group of multiple factories wrapped inside a single interface.
+                        - This is one layer above 4.3 Factory Pattern. If you are dealing with multiple factories in object creation, you would go for abstract factory pattern.
+                              eg See "SystemDesign(LLD)\4_2_SingletonDesignPattern\x5_AbstractFactoryPattern.java" : Say, you are handling payments in India and US, So 2 factories for object creation: IndiaFactory and USFactory.
+                        - So, It's a creational design pattern that provides an interface for creating families of dependant objects ( Like if payment gateway object is RazorPay -> Invoice object would use GST logic; If payment gateway object is Paypal -> Invoice object would use USA tax logic ) without specifying their concrete classes.
 
 
-Continue from 4.5 video
+Continue from 4.6 video
 
 
 /********************** System Design (LLD) Ends *****************************/
