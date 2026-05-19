@@ -4228,8 +4228,13 @@ Ref: https://youtu.be/X48VuDVv0do?si=yXiV_FswirgenFfu
                               eg See "SystemDesign(LLD)\4_2_SingletonDesignPattern\x5_AbstractFactoryPattern.java" : Say, you are handling payments in India and US, So 2 factories for object creation: IndiaFactory and USFactory.
                         - So, It's a creational design pattern that provides an interface for creating families of dependant objects ( Like if payment gateway object is RazorPay -> Invoice object would use GST logic; If payment gateway object is Paypal -> Invoice object would use USA tax logic ) without specifying their concrete classes.
 
+            /********** 4.6 Prototype Pattern ***********/
+                  1) Definition: It is a creational design pattern used when the creation of an object is costly or time consuming (say it involves DB Calls or computations) and we want to clone objects instead of creating new ones from scratch every time.
+                  
+                  Look at "SystemDesign(LLD)\4_2_SingletonDesignPattern\x6_PrototypePattern.java" for code ex.
 
-Continue from 4.6 video
+
+Continue from ?
 
 
 /********************** System Design (LLD) Ends *****************************/
