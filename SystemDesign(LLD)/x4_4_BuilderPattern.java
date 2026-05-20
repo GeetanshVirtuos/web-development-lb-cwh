@@ -91,7 +91,7 @@ class BurgerMeal {
     }
 }
 
-class x4_BuilderPattern {
+class x4_4_BuilderPattern {
     public static void main(String[] args) {
         BurgerMeal burgerMeal = (new BurgerMeal.BurgerBuilder("wheat_bun", "veg_patty")).build(); 
         //OR you can write as "new BurgerMeal.BurgerBuilder("wheat_bun", "veg_patty").build()"

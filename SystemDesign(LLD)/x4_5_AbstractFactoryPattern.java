@@ -153,7 +153,7 @@ class CheckoutService {
     }
 }
 
-class x5_AbstractFactoryPattern {
+class x4_5_AbstractFactoryPattern {
 
     public static void main(String[] args) {
         CheckoutService checkoutService = new CheckoutService(new IndiaFactory(), "razorpay");

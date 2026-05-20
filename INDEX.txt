@@ -4233,6 +4233,15 @@ Ref: https://youtu.be/X48VuDVv0do?si=yXiV_FswirgenFfu
                   
                   Look at "SystemDesign(LLD)\4_2_SingletonDesignPattern\x6_PrototypePattern.java" for code ex.
 
+      /********** 5. Structural Design Patterns ***********/
+            1) What: Structural Design Patterns focus on how classes and objects are composed to form larger, flexible structures. They help ensure that different parts of a system can work together efficiently, even if their interfaces are incompatible.
+
+            /********** 5.1 Adapter Pattern ***********/
+                  1) Definition: It's a structural design pattern that allows two incompatible interfaces to work with each other. It acts as a bridge between the interface a client expects and the actual interface of an existing class.
+                  2) When to use the Adapter Pattern?
+                        - Incompatible Interfaces: When you have an existing class you want to use, but its interface doesn't match the one your system requires.
+                        - Legacy Code Reuse: When you need to reuse legacy code or components without modifying their original source code.
+                        - Third-Party Integration: When integrating third-party APIs or external services that have their own specific data formats or method signatures.
 
 Continue from ?
 

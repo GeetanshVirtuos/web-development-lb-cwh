@@ -57,7 +57,7 @@ class EmailTemplateRegistry {
     }
 }
 
-public class x6_PrototypePattern {
+public class x4_6_PrototypePattern {
     public static void main(String[] args) {
         EmailTemplate email1 = EmailTemplateRegistry.getTemplate("welcome");
 

@@ -37,7 +37,7 @@ class LogisticsService{
     }
 }
 
-class x3_FactoryPattern{
+class x4_3_FactoryPattern{
     public static void main(String[] args) {
         System.err.println("Hello");
     }
