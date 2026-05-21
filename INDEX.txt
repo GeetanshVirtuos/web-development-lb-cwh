@@ -4243,6 +4243,27 @@ Ref: https://youtu.be/X48VuDVv0do?si=yXiV_FswirgenFfu
                         - Legacy Code Reuse: When you need to reuse legacy code or components without modifying their original source code.
                         - Third-Party Integration: When integrating third-party APIs or external services that have their own specific data formats or method signatures.
 
+            /********** 5.2 Decorator Pattern ***********/
+                  1) Definition: It is a structural design pattern that allows you to add new behavior to objects dynamically at runtime without modifying their original structure.
+
+                        - Help prevent subclass-explosion: say you want to make many variants of pizza, you might have classes like
+                              class pizza()
+                              
+                              class cheesePizza() extends pizza()
+                              class cheeseFarmhousePizza() extends cheesePizza()
+                              
+                              class jalapenoPizza() extends pizza()
+
+                              A subclass for every variant - explosion!!
+                  2) Key takeaways:
+                        - Each decoraton is a layer, like wrapping gift boxes, and each one just adds behavior to the one it wraps.
+                        - The Decorator pattern works like a call stack where behavion is accumulated as calls.
+                        - You can use this pattern when you want to add features to objects dynamically (i.e at runtime)
+                  3) Real world use case: in Word, you can apply many things in combo to your text like Bold, Italic, Underline etc.
+
+
+
+
 Continue from ?
 
 
