@@ -3606,8 +3606,46 @@ Ref: https://youtu.be/X48VuDVv0do?si=yXiV_FswirgenFfu
 
             Continue from 21:00 in video
 
+      /******* K8s Architecture *********/
+            0) Nodes in K8s are of two types:
+                  i) Worker Node : Actually does the work
+                  ii) Master Node
+            1) 3 Processes mult be installed and run in every worker node:
+                  i) Container runtime : so if you are using docker containers then the docker runtime should be present on every node
+                  ii) Kubelet : a K8s process that has interface with both the node (the worker machine) and the "Container runtime". It is responsible for starting the pods with containers inside them and allocating resources (gpu, ram etc.) to the pods
+                  iii) Kube proxy : a K8s process with intelligent routing logic for routing requests from services to pods.
+                        Ex: Suppose a backend pod BP1 running on node N1 sends a request to the database service DS1.
+                        Instead of routing the request to any database pod (possibly on another node), kube-proxy may route the request to a database pod running on the same node, say DBP1, in order to reduce network overhead and improve performance.
+
+            2) Master nodes in K8s: these are the administrators of the K8s cluster. So, they perform things like:
+                  i) schedule pods and monitor them. Re-schedule/ Re-start pod when a replica pod dies
+                  ii) if a new server is added, join it as a new Node in the cluster
+
+                  1) There are 4 processes that run on every master node:     
+                        i) API Server: Whenever you want to deploy a new service, schedule new pods, get cluster information, etc., you interact with the API Server (through tools like the Kubernetes Dashboard or kubectl CLI).
+
+                        The API Server mainly does two things:
+                              i) Authentication and authorization — verifies whether the client is allowed to perform the requested action.
+                              i) Acts as the main interface to the cluster — all cluster operations such as deployments, scaling, fetching pod health etc., go through the API Server.
+
+                              📒Note: this is good for security since this is the only entrypoint in the cluster
+                        
+                        ii) Scheduler: When the API Server receives a request to create/schedule a new pod, it forwards the request to the Scheduler. The Scheduler intelligently decides on which node the pod should run based on factors like available CPU and memory resources etc.
+
+                              📒Note: The Scheduler only decides *where* the pod should run.  
+                              It is the `kubelet` running on that node that actually starts the pod.
+
+                        iii) Controller Manager: The Controller Manager continuously monitors the state of the cluster. For example, if a pod dies, the Controller Manager detects it and sends a request to the "Scheduler" to create a replacement pod. 
+
+                        iv) etcd: it the key-value store of the cluster. Cluster state (like how many pods on which nod, how many resources have been utilised etc.) and changes are stored as key-value pairs inside of it.
+                              - This is the brain of the cluster. All the operations are facilitated by the data inside it, like API server returning the cluster health or Scheduler scheduling pods on nodes with available resources.
+
+                              What is NOT stored in etcd: the actual application data like the data inside a DB etc.
+
+                              📒Note: In practice, there are multiple master nodes in a K8s cluster  
 
 
+Continue from 33:07 in video
 
 
 /********** Kubernetes Ends **************/
