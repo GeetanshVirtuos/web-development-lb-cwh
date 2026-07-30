@@ -3604,8 +3604,6 @@ Ref: https://youtu.be/X48VuDVv0do?si=yXiV_FswirgenFfu
             Note: 1) A StatefulSet does not automatically eliminate data inconsistencies. Proper configuration of the database (replication, clustering, etc.) is still required to ensure consistency.
             2) Working with StatefulSets is generally more complex than working with Deployments. Because of this, it is a common practice to use Kubernetes mainly for stateless applications, and host databases outside the cluster (managed separately).
 
-            Continue from 21:00 in video
-
       /******* K8s Architecture *********/
             0) Nodes in K8s are of two types:
                   i) Worker Node : Actually does the work
@@ -3652,9 +3650,32 @@ Ref: https://youtu.be/X48VuDVv0do?si=yXiV_FswirgenFfu
             2) Key "kubectl" commands: 
             For my windows setup, I don't have kubectl separately installed, so I am using the one that comes with minikube. So prefix all commands with minikube like - "minikube kubectl get nodes"
                   i) kubectl get nodes 
+                  ii) kubectl version
+                  iii) kubectl get pods
+                  iv) kubectl get services
+                  v) ` kubectl create deployment <deployment name eg: my-first-deployment-nginx> --image=<image name eg:nginx> ` : To create a deployment of nginx (you can't spin up pods directly, you would be dealing with deployments remember?)
+                        📒Note: 1) For your windows setup, the command is : " minikube kubectl -- create deployment my-first-deployment-nginx --image=nginx " [Use `minikube kubectl --` whenever you are running any command that needs to pass some flags to kubectl, `--` ensures minikube passed those flags to kubectl instead of taking them as intended for itself. ]
+                                2) replicaset: This is an abstraction layer b/w a deployment and a pod. It manages all the replicas of a pod. So the hierarchy is:      
+                                    Deployment manages a ..
+                                    Replicaset manages a ..
+                                    Pod is an abstraction of ..
+                                    a Container
+
+                                    Command to see replicasets: kubectl get replicasets 
+                        i) kubectl get deployments
+                        ii) kubectl edit deployment my-first-deployment-nginx : to edit anything in a deployment like the number of pods or the underlying image etc.
+                        iii)  kubectl delete deployment depl-mongodb
+                        iv) kubectl apply -f <config file name eg:config.yaml> : there are many things that can be configured in a deployment like name of deployment, no. of pods etc. It's impractical to give all of these flags in the cli command, so you make a config file and ask kubectl to execute it instead. 
+
+                  vi) Commands that help in debugging pods i.e inspect what went wrong with the apps running in the pods
+                        i) kubectl logs <pod name eg:depl-mongodb-84455f6d5f-r8wmg> : to get the logs that the application running inside the pod produced
+                        ii) kubectl exec -it <pod name> -- bin/bash : to open an interactive terminal inside that pod's container
+                  
+            3) Key "minikube" commands:
+                  i)minikube status 
 
 
-Continue from 44:52 in video
+Continue from 1:02:03 in video
 
 
 /********** Kubernetes Ends **************/
