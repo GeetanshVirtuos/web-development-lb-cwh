@@ -3674,8 +3674,19 @@ Ref: https://youtu.be/X48VuDVv0do?si=yXiV_FswirgenFfu
             3) Key "minikube" commands:
                   i)minikube status 
 
+      /******* YAML configuration file in K8s *********/
+            1) A YAML config file in k8s has 3 parts:
+                  i) Metadata: things like kind (eg: deployment, service), name (eg: my-java-service)
+                  ii) Specification: how many pods, how mny replicas etc.
+                        a) template : In case of a YAML config file for a "deployment" kind, this is a specification of a pod (it's like a config file for tha pod inside the outer config file). So things like container info - which container, container name, which port to open, about the container the pod is abstracting (eg: nginx container) are present in this.
+                  iii) Status: You don't give this, k8s automatically generates the staus like is this running, terminating, creating more replicas etc.  
 
-Continue from 1:02:03 in video
+                  📒Note: "labels" and "selectors" are used to connect different components to one another (like service to a deploymeny or a pod to a deployment) 
+
+      /******* Demo K8s Project *********/
+            1) Usually deployment and service configuration files are present in a single YAML file because they belong together. [See " BackEnd\k8s\mongodb-deploymentANDmongodb-service.yaml "]
+
+Continue from 1:33:24 in video
 
 
 /********** Kubernetes Ends **************/

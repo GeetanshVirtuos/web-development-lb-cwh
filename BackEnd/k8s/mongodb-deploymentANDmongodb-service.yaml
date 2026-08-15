@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mongodb-deployment
+  labels:
+    app: mongodb
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mongodb
+  template:
+    metadata:
+      labels:
+        app: mongodb
+    spec:
+      containers:
+      - name: mongodb
+        image: mongo
+        ports:
+        - containerPort: 27017
+        env:
+        - name: MONGO_INITDB_ROOT_USERNAME
+          valueFrom:
+            secretKeyRef:
+              name: mongodb-secret
+              key: mongo-root-username
+        - name: MONGO_INITDB_ROOT_PASSWORD
+          valueFrom: 
+            secretKeyRef:
+              name: mongodb-secret
+              key: mongo-root-password
+
+--- # YAML allows for multiple documents in a single file. This is the separator. Below this a new document starts
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: mongodb-service
+spec:
+  selector:
+    app: mongodb # A service always points to a Pod. Here, this is the label of the pod (see line 15)
+  ports:
+    - protocol: TCP
+      port: 27017        # 1. The Service's Port
+      targetPort: 27017  # 2. The Pod / Container's Port
+      # Mapping: [Incoming Request] ──> mongodb-service : port (27017) ──> Pod / Container : targetPort (27017)
+
+
